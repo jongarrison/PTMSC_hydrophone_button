@@ -31,17 +31,6 @@ def enablePaSystemNormal():
 
 print("starting configuration")
 
-# Load secrets from the secrets.json file
-try:
-    with open('secrets.json', 'r') as f:
-        secrets = json.load(f)
-    secrets["isLoaded"] = True
-    print("Loaded secrets.json successfully")
-except OSError:
-    print("Could not find secrets.json file")
-
-print(f"configured secrets: {secrets}")
-
 connect_wifi()
 
 print(f"System configuration complete")

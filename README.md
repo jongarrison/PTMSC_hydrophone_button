@@ -6,6 +6,9 @@ Basic pico2W based micropython device. Consisting of:
  * An LED (with current limiting resistor) on pin 16
  * A relay that is high triggered on pin 15
 
+Currently, the public report of hydrophone speaker button pushes can be found here:
+https://io.adafruit.com/jongarrison/feeds/ptmsc-hydrophone-listens
+
 # Setup
 
 This project needs a secrets.json at the root which looks like this:
