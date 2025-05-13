@@ -1,8 +1,10 @@
-from machine import Pin
+from machine import Pin, Timer
 import time
 from adafruit_mpy_debouncer import Button
+from wifi import connect_wifi, disconnect_wifi, reportPaActivation
 
 print("starting basic setup")
+timerPaShutoff = Timer()
 
 led=Pin(16, Pin.OUT)
 sw=Pin(20,Pin.IN, Pin.PULL_UP)		# the switch shorts GP18 to ground when pressed

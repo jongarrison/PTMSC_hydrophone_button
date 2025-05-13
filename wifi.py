@@ -4,7 +4,6 @@ import json
 from machine import Timer
 
 secrets = {"isLoaded": False}
-timerPaShutoff = Timer()
 timerWifiShutoff = Timer()
 
 def disconnect_wifi():
