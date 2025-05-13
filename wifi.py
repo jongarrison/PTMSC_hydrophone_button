@@ -108,3 +108,28 @@ def reportPaActivation():
         response.close()
     except Exception as e:
         print(f"Error reporting PA activation: {e}")
+
+
+def reportDeviceHeartbeat():
+    try:
+        if not connect_wifi():
+            print("Not connected to WiFi, cannot report device heartbeat")
+            return
+        print("Reporting device heartbeat to Adafruit IO")
+        #https://io.adafruit.com/api/v2/jongarrison/feeds/ptmsc.ptmsc-hydrophone-heartbeat
+        username = secrets["adafruit_username"]
+        feed = secrets["adafruit_heartbeat_feed"]
+        key = secrets["adafruit_key"]
+
+        print(f"Reporting to {username} feed {feed} with key {key}")
+        url = f"https://io.adafruit.com/api/v2/{username}/feeds/{feed}/data"
+        headers = {'X-AIO-Key': key, 'Content-Type': 'application/json'}
+        data = {'value': 1}  # value is required, but not important for heartbeat
+        response = urequests.post(url, json=data, headers=headers)
+        if response.status_code == 200:
+            print("heartbeat reported successfully")
+        else:
+            print(f"Failed to report heartbeat: {response.status_code} {response.text}")
+        response.close()
+    except Exception as e:
+        print(f"Error reporting heartbeat: {e}")

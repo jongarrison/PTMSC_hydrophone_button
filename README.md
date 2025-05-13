@@ -18,7 +18,8 @@ This project needs a secrets.json at the root which looks like this:
         "wifi_password": "your-wifi-password",
         "adafruit_username": "your-adafruitio-username",
         "adafruit_key": "your-adafruitio-key",
-        "adafruit_feed": "your-adafruitio-feed"
+        "adafruit_feed": "your-adafruitio-feed",
+        "adafruit_heartbeat_feed": "your-adafruitio-heartbeat-feed"
     }
 
 ## Micropython loading
