@@ -1,0 +1,18 @@
+
+
+pip install mpremote
+
+
+Notes from Ned Kronk: https://www.crowdsupply.com/files/6dae/5ed80797-e301-40d6-ac73-71f549146dae/teardown-2024-ned-konz-micropython.pdf
+
+mpremote tool comes with MicroPython, but can also install using pipx
+    mpremote repl
+    mpremote cp main.py :main.py
+    mpremote mkdir :/app
+    mpremote cp -r app :
+    mpremote exec 'help("modules")'
+    mpremote edit :main.py
+can create macros for your own custom commands
+mpremote mount ./src
+    mounts ./src as /remote on device, does os.chdir('/remote')
+    easiest to use without running your app from main.py
