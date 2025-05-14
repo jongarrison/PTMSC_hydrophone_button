@@ -11,7 +11,7 @@ https://io.adafruit.com/jongarrison/feeds/ptmsc-hydrophone-listens
 
 # Setup
 
-This project needs a secrets.json at the root which looks like this:
+This project needs a src/secrets.json which looks like this:
 
     {
         "wifi_ssid": "your-wifi-ssid",
