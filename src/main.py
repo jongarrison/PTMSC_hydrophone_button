@@ -14,8 +14,9 @@ pwr=Pin(15, Pin.OUT)
 switch = Button(sw)
 connect_wifi()
 
-dailyHeartbeatMs = 24 * 60 * 60 * 1000 # 24 hours
-#dailyHeartbeatMs = 10 * 1000 # 10 seconds #debug
+#dailyHeartbeatMs = 24 * 60 * 60 * 1000 # 24 hours
+dailyHeartbeatMs = 10 * 1000 # 10 seconds #debug
+
 timerHeartbeat.init(period=dailyHeartbeatMs, mode=Timer.PERIODIC, callback=lambda t: reportDeviceHeartbeat())
 
 print("basic setup complete")
@@ -33,7 +34,6 @@ def enablePaSystemNormal():
     # after 10 seconds, turn off the system
     timerPaShutoff.init(period=10000, mode=Timer.ONE_SHOT, callback=lambda t: disablePaSystemNormal())
     reportPaActivation()
-
 
 # Main loop
 while True:
