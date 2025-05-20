@@ -16,3 +16,10 @@ can create macros for your own custom commands
 mpremote mount ./src
     mounts ./src as /remote on device, does os.chdir('/remote')
     easiest to use without running your app from main.py
+
+
+
+pipx run mpremote mount src
+
+then:
+    import main

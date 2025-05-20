@@ -25,3 +25,4 @@ This project needs a src/secrets.json which looks like this:
 ## Micropython loading
 
 Code can be loaded with Thonny or mpremote. See notes for some of my mpremote resources.
+
