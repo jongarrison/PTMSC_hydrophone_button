@@ -1,3 +1,4 @@
 settings.json
 **/.env
 .venv/
+secrets.json
