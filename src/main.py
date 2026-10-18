@@ -1,7 +1,10 @@
 from machine import Pin, Timer
 import time
 from adafruit_mpy_debouncer import Button
-from wifi import connect_wifi, disconnect_wifi, reportPaActivation, reportDeviceHeartbeat
+from wifi import settings, connect_wifi, disconnect_wifi, reportPaActivation, reportDeviceHeartbeat
+
+# How long the relay (and button LED) stay on after a press, in seconds
+PA_ON_SECONDS = settings.get("pa_on_seconds", 10)
 
 print("starting basic setup - V0.1")
 timerPaShutoff = Timer()
@@ -41,8 +44,7 @@ def enablePaSystemNormal():
     led.on()
     pwr.on()
 
-    # after 10 seconds, turn off the system
-    timerPaShutoff.init(period=10000, mode=Timer.ONE_SHOT, callback=lambda t: disablePaSystemNormal())
+    timerPaShutoff.init(period=PA_ON_SECONDS * 1000, mode=Timer.ONE_SHOT, callback=lambda t: disablePaSystemNormal())
     reportPaActivation()
 
 # Main loop

@@ -1,21 +1,20 @@
 import network
 import urequests
 import json
+import time
 from machine import Timer
 
-secrets = {"isLoaded": False}
+settings = {"isLoaded": False}
 timerWifiShutoff = Timer()
 
-# Load secrets from the secrets.json file
+# Load settings from the settings.json file
 try:
-    with open('secrets.json', 'r') as f:
-        secrets = json.load(f)
-    secrets["isLoaded"] = True
-    print("Loaded secrets.json successfully")
+    with open('settings.json', 'r') as f:
+        settings = json.load(f)
+    settings["isLoaded"] = True
+    print("Loaded settings.json successfully")
 except OSError:
-    print("Could not find secrets.json file")
-
-print(f"configured secrets: {secrets}")
+    print("Could not find settings.json file")
 
 
 def disconnect_wifi():
@@ -31,15 +30,15 @@ def disconnect_wifi():
 def connect_wifi():
     try:
         print("Connecting to WiFi...")
-        if not secrets["isLoaded"]:
-            print("secrets.json not loaded, cannot connect to WiFi")
+        if not settings["isLoaded"]:
+            print("settings.json not loaded, cannot connect to WiFi")
             return
 
         wlan = network.WLAN(network.STA_IF)
         wlan.active(True)
         if not wlan.isconnected():
-            print(f"Connecting to WiFi: {secrets['wifi_ssid']}")
-            wlan.connect(secrets['wifi_ssid'], secrets['wifi_password'])
+            print(f"Connecting to WiFi: {settings['wifi_ssid']}")
+            wlan.connect(settings['wifi_ssid'], settings['wifi_password'])
             # Wait for connection with timeout
             max_wait = 20
             while max_wait > 0:
@@ -71,9 +70,9 @@ def reportPaActivation():
             return
         print("Reporting PA activation to Adafruit IO")
         #https://io.adafruit.com/api/v2/jongarrison/feeds/ptmsc-hydrophone-listens
-        username = secrets["adafruit_username"]
-        feed = secrets["adafruit_feed"]
-        key = secrets["adafruit_key"]
+        username = settings["adafruit_username"]
+        feed = settings["adafruit_feed"]
+        key = settings["adafruit_key"]
   
   
         # Get current value
@@ -117,9 +116,9 @@ def reportDeviceHeartbeat():
             return
         print("Reporting device heartbeat to Adafruit IO")
         #https://io.adafruit.com/api/v2/jongarrison/feeds/ptmsc.ptmsc-hydrophone-heartbeat
-        username = secrets["adafruit_username"]
-        feed = secrets["adafruit_heartbeat_feed"]
-        key = secrets["adafruit_key"]
+        username = settings["adafruit_username"]
+        feed = settings["adafruit_heartbeat_feed"]
+        key = settings["adafruit_key"]
 
         print(f"Reporting to {username} feed {feed} with key {key}")
         url = f"https://io.adafruit.com/api/v2/{username}/feeds/{feed}/data"
